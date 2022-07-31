@@ -1,0 +1,11 @@
+parameters:
+    batch_size: 2
+    epochs: 200
+    lr: 0.01
+    momentum: 0.9
+    num_classes: 5
+    model_name: 'densenet'
+    dataset: 'pokemon'
+    optimizer_name: 'sgd'
+    criterion_name: 'cross'
+    scheduler_name: 'step'

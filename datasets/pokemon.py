@@ -49,8 +49,11 @@ class Pokemon(Dataset):
         return len(self.images)
 
     def __getitem__(self, idx):
-        # print(self.images[idx])
-        images = Image.open(self.images[idx]).convert('RGB')
+        # idx的范围 [0~len(images)]
+        # img:'dataset/pokemon\\bulbasaur\\00000000.png'
+        # label: 0/1/2/3/4
+        images = Image.open(self.images[idx]).convert('RGB')  # string path => image data
+
         labels = self.labels[idx]
 
         if self.split == 'train':
@@ -65,7 +68,7 @@ class Pokemon(Dataset):
     def transform_tr(self, images):
         composed_transforms =  transforms.Compose([
             transforms.Resize((self.resize, self.resize)),
-            transforms.RandomRotation(45),
+            transforms.RandomRotation(15),
             transforms.CenterCrop(self.resize),
             transforms.ToTensor(),
             transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
